@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Navbar from "./components/ui/Navbar";
-import Hero from "./components/ui/hero";
-import AllEvents from "./components/ui/AllEvents";
+
 import Footer from "./components/ui/Footer";
 import Home from "./components/ui/Home";
 import CreateEvents from "./components/ui/CreateEvents";
