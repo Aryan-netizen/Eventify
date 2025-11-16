@@ -1,6 +1,7 @@
 import React from 'react'
-import Hero from './hero'
+
 import AllEvents from './AllEvents'
+import Hero from './Hero'
 
 const Home = () => {
   return (
