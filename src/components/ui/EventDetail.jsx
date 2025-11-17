@@ -24,6 +24,10 @@ const EventDetail = () => {
       return <div className="min-h-screen flex items-center justify-center text-2xl">Event not found</div>;
     }
     console.log(params.id)
+
+    const relatedEvents = events.filter(
+      (e) => e.category === event.category && e.id !== event.id
+    );
     
   return (
     <div className="min-h-screen">
@@ -66,13 +70,17 @@ const EventDetail = () => {
         </div>
       </div>
       <div>
-        <h1 className="min-h-25 flex bg-amber-300 items-center text-5xl font-bold">
+        <h1 className="min-h-25 flex bg-amber-100 items-center text-5xl font-bold">
           Related Event
         </h1>
         <div className="grid grid-cols-3 gap-5 p-5">
-          {events.map((e)=>{
-            return <EventCard event={e} key={e.id}/>
-          })}
+          {relatedEvents.length > 0 ? (
+            relatedEvents.map((e) => (
+              <EventCard event={e} key={e.id} />
+            ))
+          ) : (
+            <p className="col-span-3 text-center text-xl">No related events found.</p>
+          )}
         </div>
       </div>
     </div>

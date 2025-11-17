@@ -38,6 +38,7 @@ import {
   SearchIcon,
 } from "lucide-react";
 import events from "../../data/events"; // Import your events array
+import { useNavigate } from "react-router-dom";
 
 const USERNAME = "Aryan garg"; // Replace with dynamic username if available
 
@@ -93,15 +94,16 @@ const CreateEvents = () => {
     setPrice("");
     setUrl("");
     alert("Event created!");
+    navigate("/profile")
   };
-
+  const navigate = useNavigate();
   return (
     <div className="min-h-50">
-      <h1 className="min-h-25 flex bg-amber-300 items-center text-5xl font-bold">
+      <h1 className="min-h-25 flex bg-amber-100 items-center text-3xl md:text-5xl font-bold text-center">
         Create Event
       </h1>
       <form
-        className="grid grid-cols-2 gap-5 bg-amber-50 p-10"
+        className="grid grid-cols-1 md:grid-cols-2 gap-5 bg-amber-50 p-4 md:p-10"
         onSubmit={handleSubmit}
       >
         <Input
@@ -110,12 +112,14 @@ const CreateEvents = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
+          className="w-full"
         />
 
         <NativeSelect
           value={category}
           onChange={(e) => setCategory(e.target.value)}
           required
+          className="w-full"
         >
           <NativeSelectOption value="">Select Category</NativeSelectOption>
           <NativeSelectOption value="Technology">Technology</NativeSelectOption>
@@ -130,6 +134,7 @@ const CreateEvents = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             required
+            className="w-full"
           />
         </InputGroup>
 
@@ -138,14 +143,16 @@ const CreateEvents = () => {
           placeholder="Image Url..."
           value={image}
           onChange={(e) => setImage(e.target.value)}
+          className="w-full"
         />
 
-        <InputGroup className="col-span-2">
+        <InputGroup className="md:col-span-2 col-span-1">
           <InputGroupInput
             placeholder="Event location or Online..."
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             required
+            className="w-full"
           />
           <InputGroupAddon>
             <MapPin />
@@ -248,6 +255,7 @@ const CreateEvents = () => {
             value={price}
             onChange={(e) => setPrice(e.target.value)}
             required
+            className="w-full"
           />
           <InputGroupAddon>
             <DollarSign />
@@ -261,6 +269,7 @@ const CreateEvents = () => {
             placeholder="Url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
+            className="w-full"
           />
           <InputGroupAddon>
             <Link />
@@ -269,7 +278,7 @@ const CreateEvents = () => {
             <InputGroupButton>Url</InputGroupButton>
           </InputGroupAddon>
         </InputGroup>
-        <Button className="col-span-2" type="submit">
+        <Button className="md:col-span-2 col-span-1 w-full" type="submit">
           Submit
         </Button>
       </form>

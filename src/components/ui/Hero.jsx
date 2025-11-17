@@ -13,8 +13,9 @@ const Hero = () => {
           Events, Our Platform!
         </h1>
         <p className="text-2xl">
-          Book and learn helpful tips from 3,168+ mentors in <br />
-          world-class companies with our global community.
+          Discover and join exciting college events,<br />
+          connect with 3,000+ students and faculty,<br />
+          and grow your campus network with our university.
         </p>
         <Button className={"w-35 p-6"}>Explore Now</Button>
       </div>

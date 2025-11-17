@@ -52,7 +52,7 @@ const AllEvents = () => {
           Trusted by <br />
           Thousands of Events
         </h1>
-      <div className="grid grid-cols-2 gap-2 p-2 ">
+      <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-2 p-2 ">
         <InputGroup>
           <InputGroupInput
             placeholder="Search..."
@@ -78,7 +78,7 @@ const AllEvents = () => {
           ))}
         </NativeSelect>
       </div>
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid lg:grid-cols-3 md:grid-cols-1 gap-5">
         {filteredEvents.length > 0 ? (
           filteredEvents.map(event => (
             <EventCard event={event} key={event.id} />

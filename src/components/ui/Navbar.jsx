@@ -4,8 +4,8 @@ import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-reac
 const Navbar = () => {
   return (
     <div className='min-h-20 flex justify-evenly items-center px-18 py-4'>
-      <div className='flex justify-center items-center'>
-        <img src="/images/logo.svg" alt="" className='h-10'/>
+      <div className='flex justify-center items-center text-4xl font-bold text-blue-900'>
+        Eventify
       </div>
       <div className='flex justify-center items-center gap-15 flex-1 font-semibold'>
         <div><Link to="/">Home</Link></div>

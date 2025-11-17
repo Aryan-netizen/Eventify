@@ -10,15 +10,14 @@ import EventCard from './EventCard'
 
 const Myprofile = () => {
   const enrolledEvents = events.filter(event => event.isEnrolled === true)
-  // console.log(events[5].isEnrolled)
   const organizedEvents = events.filter(event => event.organizer === "Aryan garg") // Change organizer name as needed
 
   return (
     <div className="min-h-screen">
-      <h1 className="min-h-25 flex bg-amber-300 items-center text-5xl font-bold">
+      <h1 className="min-h-25 flex bg-amber-100 border-b-2 items-center text-3xl md:text-5xl font-bold text-center">
         My tickets
       </h1>
-      <div className="grid grid-cols-3 gap-5 p-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-4 md:p-10">
         {enrolledEvents.length > 0 ? (
           enrolledEvents.map(event => (
             <EventCard event={event} key={event.id} />
@@ -27,10 +26,10 @@ const Myprofile = () => {
           <p className="col-span-3 text-center text-xl">No tickets found.</p>
         )}
       </div>
-      <h1 className="min-h-25 flex bg-amber-300 items-center text-5xl font-bold">
+      <h1 className="min-h-25 flex bg-amber-100 border-b-2 items-center text-3xl md:text-5xl font-bold text-center">
         Event Organized
       </h1>
-      <div className="grid grid-cols-3 gap-5 p-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-4 md:p-10">
         {organizedEvents.length > 0 ? (
           organizedEvents.map(event => (
             <Card key={event.id}>
