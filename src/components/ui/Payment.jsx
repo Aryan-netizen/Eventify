@@ -19,17 +19,34 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Separator } from "@/components/ui/separator"
+import { useNavigate, useParams } from "react-router-dom"
+import events from "../../data/events"
+import { useState } from "react"
 export function Payment() {
+  const navigate = useNavigate();
+  let params = useParams();
+  const eventId = params.id.replace(/^:/, "");
+  const eventIndex = events.findIndex((e) => String(e.id) === eventId);
+  const event = events[eventIndex];
+  const [isEnrolled, setIsEnrolled] = useState(event?.isEnrolled);
+
+  if (!event) {
+    return <div className="min-h-screen flex items-center justify-center text-2xl">Event not found</div>;
+  }
+
+  if (isEnrolled) {
+    return <div className="min-h-screen flex items-center justify-center text-2xl">Already Enrolled</div>;
+  }
+
   return (
     <div className="grid grid-cols-2 mt-10">
         <div className="flex flex-col gap-5 justify-start">
             <img src="/images/logo.svg" alt="" className='h-10 w-fit'/>
             <div>
-            <p>JS Galaxy: Exploring the Universe of JavaScript</p>
-            <span className="text-5xl font-bold">$299.00</span>
+            <p>{event.title}</p>
+            <span className="text-5xl font-bold">${event.price}</span>
             </div>
         </div>
-        <Separator/>
         <div className="w-full max-w-md ">
       <form>
         <FieldGroup>
@@ -135,8 +152,24 @@ export function Payment() {
           </FieldSet>
          
           <Field orientation="horizontal">
-            <Button type="submit">Submit</Button>
-            <Button variant="outline" type="button">
+            <Button
+              type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                setIsEnrolled(true);
+                events[eventIndex].isEnrolled = true;
+                navigate("/profile");
+              }}
+            >
+              Submit
+            </Button>
+            <Button
+              variant="outline"
+              type="button"
+              onClick={() => {
+                navigate(`/event-detail/:${event.id}`);
+              }}
+            >
               Cancel
             </Button>
           </Field>

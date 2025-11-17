@@ -20,8 +20,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreateEvents />} />
           <Route path="/profile" element={<Myprofile />} />
-          <Route path="/Event-detail" element={<EventDetail />} />
-          <Route path="/Payment" element={<Payment />} />
+          <Route path="/Event-detail/:id" element={<EventDetail />} />
+          <Route path="/Payment/:id" element={<Payment />} />
         </Routes>
       </main>
       <footer>

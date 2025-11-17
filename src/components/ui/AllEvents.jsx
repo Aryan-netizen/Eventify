@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
+import events from "../../data/events";
 import {
   NativeSelect,
   NativeSelectOption,
@@ -25,96 +26,66 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import EventCard from "./EventCard";
+
 const AllEvents = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("");
+
+  // Get unique categories from events
+  const categories = Array.from(new Set(events.map(e => e.category)));
+
+  // Filter events based on search and category
+  const filteredEvents = events.filter(event => {
+    const matchesSearch =
+      event.title.toLowerCase().includes(search.toLowerCase()) ||
+      event.description.toLowerCase().includes(search.toLowerCase()) ||
+      event.organizer.toLowerCase().includes(search.toLowerCase());
+    const matchesCategory = category ? event.category === category : true;
+    return matchesSearch && matchesCategory;
+  });
+
   return (
     <div className="min-h-fit p-2 flex flex-col gap-8">
       <h1 className="font-bold text-4xl">
-        Trusted by <br />
-        Thousand of Events
-      </h1>
+          Trusted by <br />
+          Thousands of Events
+        </h1>
       <div className="grid grid-cols-2 gap-2 p-2 ">
         <InputGroup>
-        <InputGroupInput placeholder="Search..." />
-        <InputGroupAddon>
-          <Search />
-        </InputGroupAddon>
-        <InputGroupAddon align="inline-end">12 results</InputGroupAddon>
-      </InputGroup>
-        <NativeSelect>
-          <NativeSelectOption value="">Select Category</NativeSelectOption>
-          <NativeSelectOption value="todo">Todo</NativeSelectOption>
+          <InputGroupInput
+            placeholder="Search..."
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+          />
+          <InputGroupAddon>
+            <Search />
+          </InputGroupAddon>
+          <InputGroupAddon align="inline-end">
+            {filteredEvents.length} results
+          </InputGroupAddon>
+        </InputGroup>
+        <NativeSelect
+          value={category}
+          onChange={e => setCategory(e.target.value)}
+        >
+          <NativeSelectOption value="">All Categories</NativeSelectOption>
+          {categories.map(cat => (
+            <NativeSelectOption key={cat} value={cat}>
+              {cat}
+            </NativeSelectOption>
+          ))}
         </NativeSelect>
       </div>
       <div className="grid grid-cols-3 gap-5">
-        <Card onClick={() => navigate('/Event-detail')}>
-          <CardContent className="flex flex-col gap-1">
-            <div className="mb-5">
-                <img src="/images/test.png" alt="" className="h-50 w-full object-cover object-center" />
-            </div>
-            <div className="space-x-1">
-              <Badge>$100</Badge>
-              <Badge>Ai</Badge>
-            </div>
-            <p className="text-gray-700">Tue, Jan, 4:30 PM</p>
-            <h1 className="font-bold text-xl">Github Universe</h1>
-          </CardContent>
-          <CardFooter className="text-sm">
-            <p>BroCoder | Aryan garg</p>
-          </CardFooter>
-        </Card>
-
-
-        <Card>
-          <CardContent className="flex flex-col gap-1">
-            <div className="mb-5">
-                <img src="/images/test.png" alt="" className="h-50 w-full object-cover object-center" />
-            </div>
-            <div className="space-x-1">
-              <Badge>$100</Badge>
-              <Badge>Ai</Badge>
-            </div>
-            <p className="text-gray-700">Tue, Jan, 4:30 PM</p>
-            <h1 className="font-bold text-xl">Github Universe</h1>
-          </CardContent>
-          <CardFooter className="text-sm">
-            <p>BroCoder | Aryan garg</p>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardContent className="flex flex-col gap-1">
-            <div className="mb-5">
-                <img src="/images/test.png" alt="" className="h-50 w-full object-cover object-center" />
-            </div>
-            <div className="space-x-1">
-              <Badge>$100</Badge>
-              <Badge>Ai</Badge>
-            </div>
-            <p className="text-gray-700">Tue, Jan, 4:30 PM</p>
-            <h1 className="font-bold text-xl">Github Universe</h1>
-          </CardContent>
-          <CardFooter className="text-sm">
-            <p>BroCoder | Aryan garg</p>
-          </CardFooter>
-        </Card>
-        <Card>
-          <CardContent className="flex flex-col gap-1">
-            <div className="mb-5">
-                <img src="/images/test.png" alt="" className="h-50 w-full object-cover object-center" />
-            </div>
-            <div className="space-x-1">
-              <Badge>$100</Badge>
-              <Badge>Ai</Badge>
-            </div>
-            <p className="text-gray-700">Tue, Jan, 4:30 PM</p>
-            <h1 className="font-bold text-xl">Github Universe</h1>
-          </CardContent>
-          <CardFooter className="text-sm">
-            <p>BroCoder | Aryan garg</p>
-          </CardFooter>
-        </Card>
-
-
+        {filteredEvents.length > 0 ? (
+          filteredEvents.map(event => (
+            <EventCard event={event} key={event.id} />
+          ))
+        ) : (
+          <p className="col-span-3 text-center text-xl">No events found.</p>
+        )}
       </div>
     </div>
   );
