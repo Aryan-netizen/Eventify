@@ -9,8 +9,8 @@ import events from '../../data/events'
 import EventCard from './EventCard'
 
 const Myprofile = () => {
-  const enrolledEvents = events.filter(event => event.isEnrolled === true && event.isApproved);
-  const organizedEvents = events.filter(event => event.isApproved);
+  const enrolledEvents = events.filter(event => event.isEnrolled === true);
+  const organizedEvents = events.filter(event => event.organizer && event.organizer.toLowerCase() === "aryan garg");
 
   return (
     <div className="min-h-screen">
@@ -32,22 +32,7 @@ const Myprofile = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 p-4 md:p-10">
         {organizedEvents.length > 0 ? (
           organizedEvents.map(event => (
-            <Card key={event.id}>
-              <CardContent className="flex flex-col gap-1">
-                <div className="mb-5">
-                  <img src={event.image || "/images/default.jpg"} alt="" className="h-50 w-full object-cover object-center" />
-                </div>
-                <div className="space-x-1">
-                  <Badge>Enrolled</Badge>
-                  <Badge>{event.category}</Badge>
-                </div>
-                <p className="text-gray-700">{event.date}</p>
-                <h1 className="font-bold text-xl">{event.title}</h1>
-              </CardContent>
-              <CardFooter className="text-sm">
-                <p>{event.organizer}</p>
-              </CardFooter>
-            </Card>
+            <EventCard event={event} key={event.id} />
           ))
         ) : (
           <p className="col-span-3 text-center text-xl">No organized events found.</p>
