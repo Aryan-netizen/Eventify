@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const Hero = () => {
   const navigate = useNavigate()
   return (
-    <div className="min-h-150 grid grid-cols-2">
+    <div className="min-h-150 grid md:grid-cols-2 grid-cols-1">
       <div className=" h-full flex flex-col justify-center gap-10">
         <h1 className="text-6xl font-bold">
           Host, Connect,

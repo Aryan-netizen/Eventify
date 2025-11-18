@@ -60,7 +60,9 @@ const Navbar = () => {
         {menuOpen && (
           <div className="md:hidden flex flex-col gap-4 py-4 font-semibold text-amber-900 bg-amber-50 rounded shadow">
             <Link to="/" className="px-4 py-2 hover:text-amber-700 transition" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/all" className="px-4 py-2 hover:text-amber-700 transition" onClick={() => setMenuOpen(false)}>All Event</Link>
             <Link to="/create" className="px-4 py-2 hover:text-amber-700 transition" onClick={() => setMenuOpen(false)}>Create Event</Link>
+            <Link to="/dean" className="px-4 py-2 hover:text-amber-700 transition" onClick={() => setMenuOpen(false)}>Dean</Link>
             <Link to="/profile" className="px-4 py-2 hover:text-amber-700 transition" onClick={() => setMenuOpen(false)}>My Profile</Link>
           </div>
         )}
