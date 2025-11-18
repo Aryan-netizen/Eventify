@@ -8,6 +8,8 @@ import { Route, Routes } from "react-router-dom";
 import Myprofile from "./components/ui/Myprofile";
 import EventDetail from "./components/ui/EventDetail";
 import { Payment } from "./components/ui/Payment";
+import AllEvents from "./components/ui/AllEvents";
+import DeanDashboard from "./components/ui/DeanDashboard";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreateEvents />} />
+          <Route path="/all" element={<AllEvents />} />
+          <Route path="/dean" element={<DeanDashboard />} />
           <Route path="/profile" element={<Myprofile />} />
           <Route path="/Event-detail/:id" element={<EventDetail />} />
           <Route path="/Payment/:id" element={<Payment />} />

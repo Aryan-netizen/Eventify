@@ -38,17 +38,17 @@ const AllEvents = () => {
 
   // Filter events based on search and category
   const filteredEvents = events.filter(event => {
-    const matchesSearch =
-      event.title.toLowerCase().includes(search.toLowerCase()) ||
-      event.description.toLowerCase().includes(search.toLowerCase()) ||
-      event.organizer.toLowerCase().includes(search.toLowerCase());
-    const matchesCategory = category ? event.category === category : true;
-    return matchesSearch && matchesCategory;
-  });
+      const matchesSearch =
+        event.title.toLowerCase().includes(search.toLowerCase()) ||
+        event.description.toLowerCase().includes(search.toLowerCase()) ||
+        event.organizer.toLowerCase().includes(search.toLowerCase());
+      const matchesCategory = category ? event.category === category : true;
+      return matchesSearch && matchesCategory;
+    });
 
   return (
-    <div className="min-h-fit p-2 flex flex-col gap-8">
-      <h1 className="font-bold text-4xl">
+    <div className="min-h-fit p-2 flex flex-col gap-8 mt-15">
+      <h1 className="font-bold text-4xl ">
           Trusted by <br />
           Thousands of Events
         </h1>

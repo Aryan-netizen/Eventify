@@ -9,8 +9,8 @@ import events from '../../data/events'
 import EventCard from './EventCard'
 
 const Myprofile = () => {
-  const enrolledEvents = events.filter(event => event.isEnrolled === true)
-  const organizedEvents = events.filter(event => event.organizer === "Aryan garg") // Change organizer name as needed
+  const enrolledEvents = events.filter(event => event.isEnrolled === true && event.isApproved);
+  const organizedEvents = events.filter(event => event.isApproved);
 
   return (
     <div className="min-h-screen">
